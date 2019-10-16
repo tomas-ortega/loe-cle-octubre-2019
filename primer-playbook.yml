@@ -1,0 +1,20 @@
+---
+- hosts: linuxmachines
+  become: true
+  tasks:
+    - name: Instalar Apache
+      yum:
+        name: httpd
+        state: present
+      notify: Reiniciar Apache
+    - name: Iniciar el servicio y booting
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+      notify: Reiniciar Apache
+  handlers:
+    - name: Reiniciar Apache
+      service:
+        name: httpd
+        state: restarted

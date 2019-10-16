@@ -1,0 +1,14 @@
+---
+- hosts: linuxmachines
+  become: true
+  vars:
+    machines_server: "{{ ansible_play_hosts_all }}"
+  tasks:
+    - name: Import Playbook
+      import_tasks: test-online-ping.yml
+      vars:
+        machines: "{{ machines_server }}"
+    - name: Instalar Maria DB
+      package:
+        name: mariadb-server
+        state: present

@@ -1,0 +1,3 @@
+---
+  - name: Test Server Online "{{ machines }}"
+    ping:
