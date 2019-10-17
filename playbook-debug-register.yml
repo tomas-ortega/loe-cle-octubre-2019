@@ -1,0 +1,13 @@
+---
+- hosts: linuxmachines
+  tasks:
+    - name: Inicio de proceso!!
+      debug: 
+        msg: "Debug inicio!!!"
+    - name: Ejecución de shell
+      shell: /usr/bin/uptime
+      register: command_result
+    - name: Show latest execution
+      debug:
+        var: command_result
+        verbosity: 4
